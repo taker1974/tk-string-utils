@@ -9,16 +9,13 @@ import jakarta.persistence.Converter;
 /**
  * {@code List<String>} converter.
  * 
- * @see <a href="https://www.baeldung.com/java-jpa-persist-string-list">Baeldung</a> for the
- *      example.
- *
  * @author Konstantin Terskikh, kostus.online.1974@yandex.ru, 2025
  */
 @Converter
 public class StringListConverter implements AttributeConverter<List<String>, String> {
 
     /** Default delimiter string. */
-    public static final String SPLIT_CHAR = ";";
+    public static final String SPLIT_STRING = ";";
 
     /**
      * {@inheritDoc} Convert string list to database column.
@@ -32,7 +29,7 @@ public class StringListConverter implements AttributeConverter<List<String>, Str
         if (stringList == null) {
             return "";
         }
-        return String.join(SPLIT_CHAR, stringList);
+        return String.join(SPLIT_STRING, stringList);
     }
 
     /**
@@ -47,6 +44,6 @@ public class StringListConverter implements AttributeConverter<List<String>, Str
         if (string == null) {
             return new ArrayList<>();
         }
-        return Arrays.asList(string.split(SPLIT_CHAR));
+        return Arrays.asList(string.split(SPLIT_STRING));
     }
 }
